@@ -21,3 +21,4 @@ import 'controllers'
 import 'bootstrap'
 import '../stylesheets/application'
 import '../custom.js'
+import "@fortawesome/fontawesome-free/js/all";
