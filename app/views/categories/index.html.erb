@@ -1,0 +1,60 @@
+<% content_for :title, 'Categories'%>
+
+<p id="notice"><%= notice %></p>
+
+<h1 class="text-center">Categories</h1>
+
+<br>
+
+<%= button_to 'New Category', new_category_path, class: 'btn btn-primary' %>
+
+<br><br>
+
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Title</th>
+        <th scope="col">Description</th>
+        <th scope="col">Color</th>
+        <th scope="col">Actions</th>
+        <th scope="col">Position</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @categories.each.with_index(1) do |category, index| %>
+        <tr>
+          <td scope="row"><b><%= index %></b></td>
+          <td><%= category.title %></td>
+          <td><%= category.description %></td>
+          <td><%= category.color %></td>
+          <td>
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <%= button_to category, method: :get, class: 'btn btn-default btn-sm'  do %>
+                <i class="fas fa-eye"></i>
+              <% end %>
+              <%= button_to edit_category_path(category), method: :get, class: 'btn btn-default btn-sm'  do %>
+                <i class="fas fa-pen"></i>
+              <% end %>
+              <%= button_to category, method: :delete, data: { confirm: 'Are you?' }, class: 'btn btn-default btn-sm'  do %>
+                <i class="fas fa-trash"></i>
+              <% end %>
+            </div>
+          </td>
+          <td>
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <%= button_to categories_move_up_path(category), method: :get, class: 'btn btn-secondary btn-sm'  do %>
+                <i class="fas fa-arrow-up"></i>
+              <% end %>
+              <%= button_to categories_move_down_path(category), method: :get, class: 'btn btn-secondary btn-sm'  do %>
+                <i class="fas fa-arrow-down"></i>
+              <% end %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
