@@ -1,0 +1,49 @@
+<% content_for :title, 'Places'%>
+
+<p id="notice"><%= notice %></p>
+
+<h1 class="text-center">Places</h1>
+
+<br>
+
+<%= button_to 'New Place', new_place_path, class: 'btn btn-primary' %>
+
+<br><br>
+
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Category</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @places.each.with_index(1) do |place, index| %>
+        <tr>
+          <td scope="row"><b><%= index %></b></td>
+          <td><%= place.name %></td>
+          <td><%= place.description %></td>
+          <td><%= place&.category&.title %></td>
+          <td>
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <%= button_to place, method: :get, class: 'btn btn-default btn-sm'  do %>
+                <i class="fas fa-eye"></i>
+              <% end %>
+              <%= button_to edit_place_path(place), method: :get, class: 'btn btn-default btn-sm'  do %>
+                <i class="fas fa-pen"></i>
+              <% end %>
+              <%= button_to place, method: :delete, data: { confirm: 'Are you?' }, class: 'btn btn-default btn-sm'  do %>
+                <i class="fas fa-trash"></i>
+              <% end %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
