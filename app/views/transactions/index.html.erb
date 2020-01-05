@@ -1,0 +1,51 @@
+<% content_for :title, 'Transactions'%>
+
+<p id="notice"><%= notice %></p>
+
+<h1 class="text-center">Transactions</h1>
+
+<br>
+
+<%= button_to 'New Transaction', new_transaction_path, class: 'btn btn-primary' %>
+
+<br><br>
+
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">User</th>
+        <th scope="col">Place</th>
+        <th scope="col">Description</th>
+        <th scope="col">Price</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @transactions.each.with_index(1) do |transaction, index| %>
+        <tr>
+          <td scope="row"><%= index %></td>
+          <td><%= transaction.user_id %></td>
+          <td><%= transaction.place_id %></td>
+          <td><%= transaction.description %></td>
+          <td><%= humanized_money_with_symbol transaction.price %></td>
+          <td>
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <%= button_to transaction, method: :get, class: 'btn btn-default btn-sm'  do %>
+                <i class="fas fa-eye"></i>
+              <% end %>
+              <%= button_to edit_transaction_path(transaction), method: :get, class: 'btn btn-default btn-sm'  do %>
+                <i class="fas fa-pen"></i>
+              <% end %>
+              <%= button_to transaction, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default btn-sm'  do %>
+                <i class="fas fa-trash"></i>
+              <% end %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

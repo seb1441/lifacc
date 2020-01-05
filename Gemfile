@@ -62,3 +62,5 @@ gem "acts_as_list"
 gem "rubocop", ">= 0.47", require: false
 gem "rubocop-performance", require: false
 gem "rubocop-rails", require: false
+
+gem 'money-rails', '~> 1.12'
